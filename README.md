@@ -1,10 +1,14 @@
 # 自他動詞ドリル — Transitive / Intransitive Drill
 
 A self-contained static web drill for **self-move (自動詞, intransitive, が)** vs
-**other-move (他動詞, transitive, を)** verb pairs. Inspired by
-[Don's Conjugation Drill](https://wkdonc.github.io/conjugation/drill.html), but
-built around *lexical pairs* (which the original doesn't cover) and reusing a
-conjugation engine for the compose mode.
+**other-move (他動詞, transitive, を)** verb pairs.
+
+**▶ Practise:** <https://daiwa-scholars-two-thousand-twenty-vibe.github.io/jita-drill/>
+
+Conceptually inspired by [Don's Conjugation Drill](https://wkdonc.github.io/conjugation/drill.html),
+but **no code is shared with it** — 自他 pairing is a *lexical* relationship, not
+a conjugation, so none of Don's rules engine applies here. Everything in this
+repo (dataset, conjugation engine, UI) is original and written from scratch.
 
 ## Run it
 No build step, no dependencies.
