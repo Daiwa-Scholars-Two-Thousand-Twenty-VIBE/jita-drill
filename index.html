@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自他動詞ドリル — Transitive / Intransitive Drill</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <h1>自他動詞ドリル <span class="ja">·</span> <span style="font-size:1rem;color:var(--muted)">self-move / other-move verb drill</span></h1>
+  <p class="sub">Intransitive (自動詞, takes が) vs transitive (他動詞, takes を) pairs — production-first, N4/N3 standard set.</p>
+
+  <!-- ============ SETUP ============ -->
+  <section id="setup">
+    <div class="card">
+      <h2>Drill modes</h2>
+      <label class="opt"><input type="checkbox" id="m-pair" checked> Pair production</label>
+      <div class="hint">Shown 開く (自) → produce the partner 開ける (他). Both directions.</div>
+      <label class="opt"><input type="checkbox" id="m-particle"> Particle fill-in-blank</label>
+      <div class="hint">ドアが ___ vs ドアを ___ — pick the right member by the が/を cue.</div>
+      <label class="opt"><input type="checkbox" id="m-compose"> Compose with conjugation</label>
+      <div class="hint">Pick the partner <em>and</em> conjugate it (past, て, potential…).</div>
+      <label class="opt"><input type="checkbox" id="m-identify"> Identify 自/他</label>
+      <div class="hint">Given a verb, tag it self- or other-move. Recognition warm-up.</div>
+      <div class="row" style="margin-top:14px">
+        <label for="pattern">Pattern</label>
+        <select id="pattern"></select>
+      </div>
+      <div class="hint" style="margin-left:0">Restrict the drill to one pairing pattern (e.g. just the -aる/-eる set).</div>
+    </div>
+
+    <div class="card">
+      <h2>Conjugation forms <span style="text-transform:none;font-weight:400">(compose mode)</span></h2>
+      <div class="grid">
+        <label class="opt"><input type="checkbox" id="f-polite" checked> polite ます</label>
+        <label class="opt"><input type="checkbox" id="f-negative" checked> negative ない</label>
+        <label class="opt"><input type="checkbox" id="f-past" checked> past た</label>
+        <label class="opt"><input type="checkbox" id="f-te" checked> て form</label>
+        <label class="opt"><input type="checkbox" id="f-potential" checked> potential</label>
+        <label class="opt"><input type="checkbox" id="f-passive"> passive</label>
+        <label class="opt"><input type="checkbox" id="f-causative"> causative</label>
+        <label class="opt"><input type="checkbox" id="f-volitional"> volitional</label>
+        <label class="opt"><input type="checkbox" id="f-imperative"> imperative</label>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Display &amp; audio</h2>
+      <div class="grid">
+        <label class="opt"><input type="checkbox" id="d-furigana" checked> Furigana (ruby)</label>
+        <label class="opt"><input type="checkbox" id="d-kana"> Kana only (no kanji)</label>
+        <label class="opt"><input type="checkbox" id="d-speak"> Auto-speak answers 🔊</label>
+        <label class="opt"><input type="checkbox" id="d-speak-prompt"> Auto-speak prompts 🔊</label>
+      </div>
+      <div class="row" style="margin-top:14px">
+        <label for="voice">Voice</label>
+        <select id="voice"></select>
+        <button type="button" id="voice-test">🔊 Test</button>
+      </div>
+      <div class="row">
+        <label for="rate">Speed</label>
+        <input type="range" id="rate" min="0.5" max="1.5" step="0.1" value="0.9">
+        <span class="pool" id="rate-val">0.9×</span>
+      </div>
+      <div class="hint" id="voice-note" style="margin-left:0"></div>
+      <div class="row" style="margin-top:14px">
+        <label for="count">Questions</label>
+        <input type="number" id="count" value="20" min="1" max="200">
+        <span class="pool" id="pool"></span>
+      </div>
+    </div>
+
+    <button class="primary big" id="start">ドリル開始 · Start drill</button>
+    <button class="big" id="open-study" style="margin-top:10px">📖 単語リスト · Study the pairs first</button>
+  </section>
+
+  <!-- ============ STUDY LIST ============ -->
+  <section id="studylist" class="hidden">
+    <div class="qctrls"><button class="mini" id="study-home">⌂ Home</button></div>
+
+    <details class="card cheatsheet" id="cheatsheet">
+      <summary>📐 自他のパターン · Pairing rules <span class="pool">(tap to expand)</span></summary>
+      <div id="cheat-body"></div>
+    </details>
+
+    <div class="card">
+      <h2>単語リスト · Pair study list</h2>
+      <input type="text" id="study-search" class="search" placeholder="🔍 search kanji / kana / English…" autocomplete="off">
+      <div class="row" style="margin-top:10px; gap:10px; flex-wrap:wrap">
+        <label for="study-pattern">Pattern</label>
+        <select id="study-pattern"></select>
+        <label class="opt" style="padding:0; min-width:auto"><input type="checkbox" id="study-hide-en"> Hide meanings</label>
+        <span class="pool" id="study-count" style="margin-left:auto"></span>
+      </div>
+      <div class="wl-head">
+        <div class="wl-ji">自動詞 <span>(が)</span></div>
+        <div class="wl-ta">他動詞 <span>(を)</span></div>
+        <div class="wl-en">意味</div>
+      </div>
+      <div id="study-rows"></div>
+    </div>
+    <button class="primary big" id="study-start">このままドリルへ · Start drill →</button>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section id="quiz" class="hidden">
+    <div class="qctrls">
+      <button class="mini" id="q-home">⌂ Home</button>
+      <button class="mini" id="q-restart">↺ Restart set</button>
+    </div>
+    <div class="bar">
+      <span id="q-count"></span>
+      <span class="score" id="q-score"></span>
+    </div>
+    <div class="progress"><i id="q-bar"></i></div>
+
+    <div class="card">
+      <span class="tag mode" id="q-tag"></span>
+      <div class="prompt-row">
+        <div class="prompt" id="q-prompt"></div>
+        <button class="speak" id="q-replay" title="Listen 🔊">🔊</button>
+      </div>
+      <div class="ask" id="q-ask"></div>
+
+      <div id="q-input-wrap">
+        <input type="text" class="answer" id="q-answer" autocomplete="off"
+               autocapitalize="off" spellcheck="false" placeholder="答えを入力 (kana or kanji)…">
+      </div>
+      <div class="choices hidden" id="q-choices">
+        <button class="ji" id="c-ji">自動詞 (が)</button>
+        <button class="ta" id="c-ta">他動詞 (を)</button>
+      </div>
+
+      <div class="feedback hidden" id="q-feedback"></div>
+
+      <div class="row" style="margin-top:16px">
+        <button class="primary" id="q-submit">答え合わせ · Check</button>
+        <button class="primary hidden" id="q-next">次へ · Next →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESULTS ============ -->
+  <section id="results" class="hidden">
+    <div class="card">
+      <h2>結果 · Results</h2>
+      <div class="bigscore" id="r-score"></div>
+      <div class="missed" id="r-missed"></div>
+    </div>
+    <div class="row" style="gap:10px; margin-top:4px">
+      <button class="primary" id="restart-same">↺ Try again (same settings)</button>
+      <button id="restart">⌂ Back to setup</button>
+    </div>
+  </section>
+
+</div>
+
+<script src="conjugate.js"></script>
+<script src="pairs.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
