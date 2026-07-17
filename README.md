@@ -8,7 +8,8 @@ A self-contained static web drill for **self-move (自動詞, intransitive, が)
 Conceptually inspired by [Don's Conjugation Drill](https://wkdonc.github.io/conjugation/drill.html),
 but **no code is shared with it** — 自他 pairing is a *lexical* relationship, not
 a conjugation, so none of Don's rules engine applies here. Everything in this
-repo (dataset, conjugation engine, UI) is original and written from scratch.
+repo (dataset, conjugation engine, UI) is original, written from scratch, and
+[MIT-licensed](LICENSE) — fork it, use it, build on it.
 
 ## Run it
 No build step, no dependencies.
@@ -83,4 +84,9 @@ Append to `window.PAIRS` in `pairs.js`:
   `iru_osu`, `u_kasu`, `irregular`). Feeds the cheat-sheet + pattern filter.
 
 After editing, re-run `node test_conjugate.js` if you touched the engine.
-```
+
+## Licence
+
+[MIT](LICENSE) © 2026 [daignrd](https://github.com/daignrd). The 自他 pair
+dataset, conjugation engine and UI are all original work — fork it, use it,
+build on it.
