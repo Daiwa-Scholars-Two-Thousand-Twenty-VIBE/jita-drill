@@ -6,6 +6,7 @@ var cases = [
   // --- ichidan ---
   ["開[あ]ける", "ichidan", "polite",     "あけます",   "開けます"],
   ["開[あ]ける", "ichidan", "negative",   "あけない",   "開けない"],
+  ["開[あ]ける", "ichidan", "negativePast","あけなかった", "開けなかった"],
   ["開[あ]ける", "ichidan", "past",       "あけた",     "開けた"],
   ["開[あ]ける", "ichidan", "te",         "あけて",     "開けて"],
   ["開[あ]ける", "ichidan", "potential",  "あけられる", "開けられる"],
@@ -17,6 +18,7 @@ var cases = [
   // --- godan: く (te/ta sound change) ---
   ["開[あ]く",   "godan", "polite",     "あきます",   "開きます"],
   ["開[あ]く",   "godan", "negative",   "あかない",   "開かない"],
+  ["開[あ]く",   "godan", "negativePast","あかなかった", "開かなかった"],
   ["開[あ]く",   "godan", "past",       "あいた",     "開いた"],
   ["開[あ]く",   "godan", "te",         "あいて",     "開いて"],
   ["開[あ]く",   "godan", "potential",  "あける",     "開ける"],  // あく potential collides w/ あける(他) — expected

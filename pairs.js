@@ -1,5 +1,5 @@
 /*
- * 自他動詞ペア データセット (N4/N3 standard set)
+ * 自他動詞ペア データセット (core + N2-focus expansion)
  * ---------------------------------------------------------------------------
  * Editable: add/remove pairs freely. Each entry:
  *   ji  = 自動詞 (intransitive, "self-move")  — takes が
@@ -63,18 +63,63 @@ window.PAIRS = [
   { ji:{w:"燃える", fz:"燃[も]える",     r:"もえる",   g:"ichidan"}, ta:{w:"燃やす",   fz:"燃[も]やす",     r:"もやす",   g:"godan"},   en:"to burn",            ex:{n:"ごみ",     nfz:"ごみ"}, pat:"eru_yasu" },
 ];
 
+// The original 46-pair set is the repair layer: high-frequency N4/N3 forms
+// that still underpin N2 sentence choice. JLPT publishes no official vocab
+// list, so the expansion below is deliberately labelled "N2 focus": pairs
+// selected for formal reading, abstract change, and the project's SKM lesson 4.
+window.PAIRS.forEach(function (p) { p.tier = "core"; });
+
+window.PAIRS.push(
+  { ji:{w:"空く",     fz:"空[あ]く",         r:"あく",       g:"godan"},   ta:{w:"空ける",   fz:"空[あ]ける",       r:"あける",     g:"ichidan"}, en:"to become vacant / make room",        ex:{n:"席",       nfz:"席[せき]"}, pat:"u_eru", tier:"n2" },
+  { ji:{w:"混ざる",   fz:"混[ま]ざる",       r:"まざる",     g:"godan"},   ta:{w:"混ぜる",   fz:"混[ま]ぜる",       r:"まぜる",     g:"ichidan"}, en:"to become mixed / mix",               ex:{n:"材料",     nfz:"材[ざい]料[りょう]"}, pat:"aru_eru", tier:"n2" },
+  { ji:{w:"広がる",   fz:"広[ひろ]がる",     r:"ひろがる",   g:"godan"},   ta:{w:"広げる",   fz:"広[ひろ]げる",     r:"ひろげる",   g:"ichidan"}, en:"to spread / expand something",        ex:{n:"影響",     nfz:"影[えい]響[きょう]"}, pat:"aru_eru", tier:"n2" },
+  { ji:{w:"固まる",   fz:"固[かた]まる",     r:"かたまる",   g:"godan"},   ta:{w:"固める",   fz:"固[かた]める",     r:"かためる",   g:"ichidan"}, en:"to become firm / firm up",            ex:{n:"方針",     nfz:"方[ほう]針[しん]"}, pat:"aru_eru", tier:"n2" },
+  { ji:{w:"高まる",   fz:"高[たか]まる",     r:"たかまる",   g:"godan"},   ta:{w:"高める",   fz:"高[たか]める",     r:"たかめる",   g:"ichidan"}, en:"to intensify / heighten",              ex:{n:"関心",     nfz:"関[かん]心[しん]"}, pat:"aru_eru", tier:"n2" },
+  { ji:{w:"深まる",   fz:"深[ふか]まる",     r:"ふかまる",   g:"godan"},   ta:{w:"深める",   fz:"深[ふか]める",     r:"ふかめる",   g:"ichidan"}, en:"to deepen / deepen something",        ex:{n:"理解",     nfz:"理[り]解[かい]"}, pat:"aru_eru", tier:"n2" },
+  { ji:{w:"強まる",   fz:"強[つよ]まる",     r:"つよまる",   g:"godan"},   ta:{w:"強める",   fz:"強[つよ]める",     r:"つよめる",   g:"ichidan"}, en:"to grow stronger / strengthen",        ex:{n:"規制",     nfz:"規[き]制[せい]"}, pat:"aru_eru", tier:"n2" },
+  { ji:{w:"弱まる",   fz:"弱[よわ]まる",     r:"よわまる",   g:"godan"},   ta:{w:"弱める",   fz:"弱[よわ]める",     r:"よわめる",   g:"ichidan"}, en:"to weaken / weaken something",        ex:{n:"効果",     nfz:"効[こう]果[か]"}, pat:"aru_eru", tier:"n2" },
+  { ji:{w:"定まる",   fz:"定[さだ]まる",     r:"さだまる",   g:"godan"},   ta:{w:"定める",   fz:"定[さだ]める",     r:"さだめる",   g:"ichidan"}, en:"to become fixed / establish",          ex:{n:"方針",     nfz:"方[ほう]針[しん]"}, pat:"aru_eru", tier:"n2" },
+  { ji:{w:"収まる",   fz:"収[おさ]まる",     r:"おさまる",   g:"godan"},   ta:{w:"収める",   fz:"収[おさ]める",     r:"おさめる",   g:"ichidan"}, en:"to settle / bring under control",      ex:{n:"混乱",     nfz:"混[こん]乱[らん]"}, pat:"aru_eru", tier:"n2" },
+  { ji:{w:"改まる",   fz:"改[あらた]まる",   r:"あらたまる", g:"godan"},   ta:{w:"改める",   fz:"改[あらた]める",   r:"あらためる", g:"ichidan"}, en:"to be renewed / revise",                ex:{n:"制度",     nfz:"制[せい]度[ど]"}, pat:"aru_eru", tier:"n2" },
+  { ji:{w:"備わる",   fz:"備[そな]わる",     r:"そなわる",   g:"godan"},   ta:{w:"備える",   fz:"備[そな]える",     r:"そなえる",   g:"ichidan"}, en:"to be equipped / provide",             ex:{n:"機能",     nfz:"機[き]能[のう]"}, pat:"aru_eru", tier:"n2" },
+  { ji:{w:"整う",     fz:"整[ととの]う",     r:"ととのう",   g:"godan"},   ta:{w:"整える",   fz:"整[ととの]える",   r:"ととのえる", g:"ichidan"}, en:"to be ready / put in order",            ex:{n:"準備",     nfz:"準[じゅん]備[び]"}, pat:"u_eru", tier:"n2" },
+  { ji:{w:"倒れる",   fz:"倒[たお]れる",     r:"たおれる",   g:"ichidan"}, ta:{w:"倒す",     fz:"倒[たお]す",       r:"たおす",     g:"godan"},   en:"to fall over / knock down",            ex:{n:"木",       nfz:"木[き]"}, pat:"reru_su", tier:"n2" },
+  { ji:{w:"外れる",   fz:"外[はず]れる",     r:"はずれる",   g:"ichidan"}, ta:{w:"外す",     fz:"外[はず]す",       r:"はずす",     g:"godan"},   en:"to come off / remove",                  ex:{n:"ボタン",   nfz:"ボタン"}, pat:"reru_su", tier:"n2" },
+  { ji:{w:"隠れる",   fz:"隠[かく]れる",     r:"かくれる",   g:"ichidan"}, ta:{w:"隠す",     fz:"隠[かく]す",       r:"かくす",     g:"godan"},   en:"to be hidden / conceal",                ex:{n:"姿",       nfz:"姿[すがた]"}, pat:"reru_su", tier:"n2" },
+  { ji:{w:"乱れる",   fz:"乱[みだ]れる",     r:"みだれる",   g:"ichidan"}, ta:{w:"乱す",     fz:"乱[みだ]す",       r:"みだす",     g:"godan"},   en:"to fall into disorder / disrupt",       ex:{n:"秩序",     nfz:"秩[ちつ]序[じょ]"}, pat:"reru_su", tier:"n2" },
+  { ji:{w:"崩れる",   fz:"崩[くず]れる",     r:"くずれる",   g:"ichidan"}, ta:{w:"崩す",     fz:"崩[くず]す",       r:"くずす",     g:"godan"},   en:"to collapse / break down",              ex:{n:"バランス", nfz:"バランス"}, pat:"reru_su", tier:"n2" },
+  { ji:{w:"離れる",   fz:"離[はな]れる",     r:"はなれる",   g:"ichidan"}, ta:{w:"離す",     fz:"離[はな]す",       r:"はなす",     g:"godan"},   en:"to separate / separate something",      ex:{n:"手",       nfz:"手[て]"}, pat:"reru_su", tier:"n2" },
+  { ji:{w:"解ける",   fz:"解[と]ける",       r:"とける",     g:"ichidan"}, ta:{w:"解く",     fz:"解[と]く",         r:"とく",       g:"godan"},   en:"to become solved / solve",              ex:{n:"問題",     nfz:"問[もん]題[だい]"}, pat:"eru_u", tier:"n2" },
+  { ji:{w:"溶ける",   fz:"溶[と]ける",       r:"とける",     g:"ichidan"}, ta:{w:"溶かす",   fz:"溶[と]かす",       r:"とかす",     g:"godan"},   en:"to melt / melt something",              ex:{n:"チョコ",   nfz:"チョコ"}, pat:"irregular", tier:"n2" },
+  { ji:{w:"逃げる",   fz:"逃[に]げる",       r:"にげる",     g:"ichidan"}, ta:{w:"逃がす",   fz:"逃[に]がす",       r:"にがす",     g:"godan"},   en:"to escape / let escape",                ex:{n:"魚",       nfz:"魚[さかな]"}, pat:"irregular", tier:"n2" },
+  { ji:{w:"散る",     fz:"散[ち]る",         r:"ちる",       g:"godan"},   ta:{w:"散らす",   fz:"散[ち]らす",       r:"ちらす",     g:"godan"},   en:"to scatter / scatter something",        ex:{n:"花びら",   nfz:"花[はな]びら"}, pat:"rasu", tier:"n2" },
+  { ji:{w:"伸びる",   fz:"伸[の]びる",       r:"のびる",     g:"ichidan"}, ta:{w:"伸ばす",   fz:"伸[の]ばす",       r:"のばす",     g:"godan"},   en:"to grow / extend",                      ex:{n:"売上",     nfz:"売[うり]上[あげ]"}, pat:"irregular", tier:"n2" },
+  { ji:{w:"浮かぶ",   fz:"浮[う]かぶ",       r:"うかぶ",     g:"godan"},   ta:{w:"浮かべる", fz:"浮[う]かべる",     r:"うかべる",   g:"ichidan"}, en:"to float / bring to mind or face",     ex:{n:"笑顔",     nfz:"笑[え]顔[がお]"}, pat:"u_eru", tier:"n2" },
+  { ji:{w:"沈む",     fz:"沈[しず]む",       r:"しずむ",     g:"godan"},   ta:{w:"沈める",   fz:"沈[しず]める",     r:"しずめる",   g:"ichidan"}, en:"to sink / submerge",                    ex:{n:"船",       nfz:"船[ふね]"}, pat:"u_eru", tier:"n2" },
+  { ji:{w:"伝わる",   fz:"伝[つた]わる",     r:"つたわる",   g:"godan"},   ta:{w:"伝える",   fz:"伝[つた]える",     r:"つたえる",   g:"ichidan"}, en:"to get across / convey",                ex:{n:"気持ち",   nfz:"気[き]持[も]ち"}, pat:"aru_eru", tier:"n2" },
+  { ji:{w:"つながる", fz:"つながる",         r:"つながる",   g:"godan"},   ta:{w:"つなげる", fz:"つなげる",         r:"つなげる",   g:"ichidan"}, en:"to be connected / connect",            ex:{n:"回線",     nfz:"回[かい]線[せん]"}, pat:"aru_eru", tier:"n2" },
+  { ji:{w:"重なる",   fz:"重[かさ]なる",     r:"かさなる",   g:"godan"},   ta:{w:"重ねる",   fz:"重[かさ]ねる",     r:"かさねる",   g:"ichidan"}, en:"to overlap / accumulate",               ex:{n:"色",       nfz:"色[いろ]"}, pat:"aru_eru", tier:"n2" },
+  { ji:{w:"分かれる", fz:"分[わ]かれる",     r:"わかれる",   g:"ichidan"}, ta:{w:"分ける",   fz:"分[わ]ける",       r:"わける",     g:"ichidan"}, en:"to split up / divide",                  ex:{n:"グループ", nfz:"グループ"}, pat:"irregular", tier:"n2" },
+  { ji:{w:"曲がる",   fz:"曲[ま]がる",       r:"まがる",     g:"godan"},   ta:{w:"曲げる",   fz:"曲[ま]げる",       r:"まげる",     g:"ichidan"}, en:"to bend / bend something",              ex:{n:"針金",     nfz:"針[はり]金[がね]"}, pat:"aru_eru", tier:"n2" },
+  { ji:{w:"加わる",   fz:"加[くわ]わる",     r:"くわわる",   g:"godan"},   ta:{w:"加える",   fz:"加[くわ]える",     r:"くわえる",   g:"ichidan"}, en:"to be added / add",                     ex:{n:"変更",     nfz:"変[へん]更[こう]"}, pat:"aru_eru", tier:"n2" },
+  { ji:{w:"埋まる",   fz:"埋[う]まる",       r:"うまる",     g:"godan"},   ta:{w:"埋める",   fz:"埋[う]める",       r:"うめる",     g:"ichidan"}, en:"to be filled / fill",                   ex:{n:"空欄",     nfz:"空[くう]欄[らん]"}, pat:"aru_eru", tier:"n2" },
+  { ji:{w:"片付く",   fz:"片[かた]付[づ]く", r:"かたづく",   g:"godan"},   ta:{w:"片付ける", fz:"片[かた]付[づ]ける",r:"かたづける", g:"ichidan"}, en:"to be settled / put in order",          ex:{n:"仕事",     nfz:"仕[し]事[ごと]"}, pat:"u_eru", tier:"n2" },
+  { ji:{w:"傾く",     fz:"傾[かたむ]く",     r:"かたむく",   g:"godan"},   ta:{w:"傾ける",   fz:"傾[かたむ]ける",   r:"かたむける", g:"ichidan"}, en:"to tilt / incline",                      ex:{n:"体",       nfz:"体[からだ]"}, pat:"u_eru", tier:"n2" },
+  { ji:{w:"無くなる", fz:"無[な]くなる",     r:"なくなる",   g:"godan"},   ta:{w:"無くす",   fz:"無[な]くす",       r:"なくす",     g:"godan"},   en:"to go missing / lose",                   ex:{n:"鍵",       nfz:"鍵[かぎ]"}, pat:"irregular", tier:"n2" }
+);
+
 /*
  * Pairing patterns — drives the cheat sheet and the per-pattern drill filter.
  * `rel` is a reliability label; `trap:true` flags the one that breaks the
  * naive "eru = transitive" intuition. Examples are pulled live from PAIRS.
  */
 window.PATTERNS = [
-  { id:"aru_eru",  sig:"～ある ／ ～える",        ji:"-ある (自)",     ta:"-える (他)",  rel:"very high",
-    rule:"The aru/eru rule. -ある is <b>always</b> intransitive; its partner is the -える transitive." },
+  { id:"aru_eru",  sig:"～aる ／ ～eる",          ji:"a-row + る (自)", ta:"e-row + る (他)", rel:"high",
+    rule:"A productive vowel-change family: the a-row godan side is usually <b>自</b>, while the e-row ichidan partner is <b>他</b>. Strong cue, not a law." },
   { id:"u_eru",    sig:"～う (五段) ／ ～える",     ji:"-う 五段 (自)",  ta:"-える (他)",  rel:"high",
     rule:"Plain godan = self-mover; the -える partner is transitive." },
   { id:"eru_u",    sig:"～える ／ ～う (五段)",     ji:"-える (自) ⚠️",  ta:"-う 五段 (他)", rel:"the exception", trap:true,
-    rule:"<b>The trap.</b> Here -える is <b>intransitive</b> — identical to the potential of the transitive (割れる = 割る's potential → \"splits by itself\"). -える is only transitive opposite -ある." },
+    rule:"In this family, the -える verb is <b>intransitive</b>. Some forms also match a transitive verb's potential: 割れる can mean “break” or “can break”, depending on context. Learn the pair; -える alone does not identify transitivity." },
   { id:"eru_yasu", sig:"～える ／ ～やす",         ji:"-える (自)",     ta:"-やす (他)",  rel:"high",
     rule:"-やす is a -す transitive → 他. The -える side is the self-mover." },
   { id:"reru_su",  sig:"～れる ／ ～す",           ji:"-れる (自)",     ta:"-す (他)",    rel:"high",

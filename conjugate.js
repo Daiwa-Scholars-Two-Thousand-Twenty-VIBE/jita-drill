@@ -26,6 +26,7 @@
     dictionary: "dictionary 辞書形",
     polite:     "polite ます形",
     negative:   "negative ない形",
+    negativePast:"negative past なかった形",
     past:       "past た形",
     te:         "て form て形",
     potential:  "potential 可能形",
@@ -44,6 +45,7 @@
       switch (form) {
         case "polite":     return stem + "ます";
         case "negative":   return stem + "ない";
+        case "negativePast":return stem + "なかった";
         case "past":       return stem + "た";
         case "te":         return stem + "て";
         case "potential":  return stem + "られる";
@@ -62,6 +64,7 @@
       switch (form) {
         case "polite":     return base + m.i + "ます";
         case "negative":   return base + m.a + "ない";
+        case "negativePast":return base + m.a + "なかった";
         case "past":       return base + m.ta;
         case "te":         return base + m.te;
         case "potential":  return base + m.e + "る";

@@ -1,7 +1,10 @@
 # 自他動詞ドリル — Transitive / Intransitive Drill
 
-A self-contained static web drill for **self-move (自動詞, intransitive, が)** vs
-**other-move (他動詞, transitive, を)** verb pairs.
+A self-contained static web drill for **change/state (自動詞, intransitive, が)** vs
+**actor-caused change (他動詞, transitive, を)** verb pairs. The current version
+contains **82 pairs** (46 core-repair + 36 N2-focus) and **35 contextual N2
+sentence prompts** based on viewpoint, responsibility, capacity, result, and
+same-subject 〜て decisions.
 
 **▶ Practise:** <https://daiwa-scholars-two-thousand-twenty-vibe.github.io/jita-drill/>
 
@@ -16,7 +19,7 @@ No build step, no dependencies.
 - **Just open `index.html`** in a browser (works straight from `file://`), or
 - Serve it from this folder: `python3 -m http.server 8765` → <http://localhost:8765/>
 
-Tests for the conjugation engine: `node test_conjugate.js`.
+Tests: `node test_conjugate.js` and `node test_content.js`.
 
 ## Study list (self-study before drilling)
 **📖 単語リスト · Study the pairs first** opens a browsable table of all pairs:
@@ -33,11 +36,23 @@ Every pair carries a `pat` tag (see `window.PATTERNS` in `pairs.js`). This power
   drill to one pattern, e.g. grind only the -ある/-える set or only the trap set.
 - Click any cheat-sheet row to filter the study list to that pattern.
 
-## Four drill modes
-1. **Pair production** — shown 開く (自) → produce the partner 開ける (他), both directions.
-2. **Particle fill-in-blank** — ドアが ___ / ドアを ___ → choose the member by the が/を cue.
-3. **Compose with conjugation** — pick the partner *and* conjugate it (past, て, potential…).
-4. **Identify 自/他** — tag a verb self/other-move (recognition warm-up).
+## Five drill modes
+1. **N2 sentence production** — produce an inflected verb inside a formal/contextual sentence.
+2. **Pair production** — shown 開く (自) → produce the partner 開ける (他), both directions.
+3. **Particle sentence** — ドアが ___ / ドアを ___ → produce the member selected by the case frame.
+4. **Pair + conjugation** — retrieve the partner *and* conjugate it.
+5. **Identify 自/他** — recognition warm-up.
+
+The app keeps answer history locally, prioritises weak/unseen pairs, recycles a
+miss once later in the same session, and reports seconds per answer. “Automatic”
+means at least three consecutive correct answers, ≥80% accuracy, and an average
+retrieval time of eight seconds or less.
+
+Use **わからない · Show answer** when recall fails; it counts as a miss and
+returns once for practice. Atlas drills use the current search, level and
+pattern filters, in pair-production mode. Custom settings start collapsed.
+Timing includes reading and Japanese input, so compare like-for-like tasks;
+the eight-second badge is a practice heuristic, not a fluency assessment.
 
 During a drill: **⌂ Home** (back to setup) and **↺ Restart set** are always available;
 the results screen offers **↺ Try again (same settings)**. After each answer the
@@ -62,9 +77,11 @@ particle mode also accepts the polite (ます) form.
 | `index.html` | markup + screens |
 | `style.css`  | styling |
 | `conjugate.js` | conjugation engine + furigana parser (godan/ichidan, 9 forms). Also runs in Node. |
-| `pairs.js`   | **the dataset** — edit this to add/remove pairs |
+| `pairs.js`   | pair dataset and morphological patterns |
+| `contexts.js` | hand-authored N2 sentence-choice bank |
 | `app.js`     | quiz engine + UI logic |
 | `test_conjugate.js` | `node test_conjugate.js` — sanity tests for the engine |
+| `test_content.js` | dataset/context integrity checks |
 
 ## Adding a pair
 Append to `window.PAIRS` in `pairs.js`:
