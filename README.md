@@ -1,4 +1,4 @@
-# 自他動詞ドリル — Transitive / Intransitive Drill
+# 自他動詞ラボ — N2 transitivity training
 
 A self-contained static web drill for **change/state (自動詞, intransitive, が)** vs
 **actor-caused change (他動詞, transitive, を)** verb pairs. The current version
